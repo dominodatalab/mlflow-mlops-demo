@@ -1,0 +1,12 @@
+[
+  {
+    "name": "ModelA",
+    "version": "123",
+    "stage": "Production"
+  },
+  {
+    "name": "ModelB",
+    "version": "234",
+    "stage": "Archived"
+  }
+]
