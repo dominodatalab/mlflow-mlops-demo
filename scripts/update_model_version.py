@@ -11,4 +11,4 @@ client.update_model_version(name = "Name",
 ##Read the {PROJECT_ROOT}/mlflow_models/archive/{model_name}-{model_version}.json
 client.update_model_version(name = "Name",
                     version = version
-                    stage = "Archived"
+                    stage = "Archived")
