@@ -34,4 +34,4 @@ jobs:
         pip install mlflow
     - name: Update model version
       run: |
-        python ./scripts/update_model_version.py
+        python ./scripts/update_model_version.py scripts/model_version.json
