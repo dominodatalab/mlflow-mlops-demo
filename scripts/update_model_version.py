@@ -7,7 +7,7 @@ os.environ["MLFLOW_TRACKING_URI"] = "https://fsec.cs.domino.tech/mlflow-efs/#"
 os.environ["MLFLOW_TRACKING_TOKEN"] = domino_api_key   
 client = mlflow.tracking.MlflowClient()
 
-with open("model_version.json", "r") as mv_file:
+with open(sys.argv[1], "r") as mv_file:
     model_versions = json.load(mv_file)
     for mv in model_versions:
         client.update_model_version(name = mv["name"],
