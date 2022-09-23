@@ -1,12 +1,12 @@
 [
   {
-    "name": "ModelA",
-    "version": "123",
-    "stage": "Production"
+    "name": "taxi_fare_regressor",
+    "version": "Version 1",
+    "stage": "Staging"
   },
   {
-    "name": "ModelB",
-    "version": "234",
-    "stage": "Archived"
+    "name": "wine_quality",
+    "version": "Version 2",
+    "stage": "Staging"
   }
 ]
