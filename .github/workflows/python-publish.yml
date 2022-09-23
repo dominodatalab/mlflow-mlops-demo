@@ -10,8 +10,9 @@ name: Change MLFLOW model stage to production
 
 on:
   pull_request:
-    branches:
-    - FIELD-853
+    branches: [ "FIELD-853" ]
+    types:
+      - closed
     
 permissions:
   contents: read
