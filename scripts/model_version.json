@@ -2,11 +2,11 @@
   {
     "name": "taxi_fare_regressor",
     "version": 1,
-    "stage": "Staging"
+    "stage": "Production"
   },
   {
     "name": "wine_quality",
     "version": 1,
-    "stage": "Staging"
+    "stage": "Production"
   }
 ]
