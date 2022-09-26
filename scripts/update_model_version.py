@@ -12,7 +12,6 @@ client = mlflow.tracking.MlflowClient()
 with open(sys.argv[1], "r") as mv_file:
     model_versions = json.load(mv_file)
     for mv in model_versions:
-        if ("stage" in mv) and (mv["stage"] in ["Production", "Archived"]):
-            client.transition_model_version_stage(name = mv["name"],
+        client.transition_model_version_stage(name = mv["name"],
                         version = mv["version"],
                         stage = mv["stage"])
