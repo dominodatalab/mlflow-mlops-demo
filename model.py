@@ -14,11 +14,11 @@ def predict(vars):
 def _model_path_from_env():
     if "MLFLOW_ARTIFACTS_PATH" in os.environ:
         return os.getenv("MLFLOW_ARTIFACTS_PATH")
-    project_owner = os.environ.get("DOMINO_MODEL_PROJECT_OWNER", None)
+    model_owner = os.environ.get("MLFLOW_MODEL_OWNER", None)
     mlflow_run_id = os.environ.get("MLFLOW_RUN_ID", None)
-    if project_owner and mlflow_run_id:
-        return f"/artifacts/mlflow/{project_owner}/{mlflow_run_id}/artifacts/"
+    if model_owner and mlflow_run_id:
+        return f"/artifacts/mlflow/{model_owner}/{mlflow_run_id}/artifacts/"
     else:
         raise Exception(
-            f"Cannot determine artifact path from owner={project_owner} and run id={mlflow_run_id}"
+            f"Cannot determine artifact path from owner={model_owner} and run id={mlflow_run_id}"
         )
