@@ -1,13 +1,20 @@
 import mlflow.pyfunc
 import pandas as pd
 import os
+import logging
+
+logger = logging.getLogger(name=__name__)
 
 # vars is a dict that the client must provide
 def predict(vars):
     model_path = _model_path_from_env()
+    logger.info(f"Model artifacts path is {model_path}")
     loaded_model = mlflow.pyfunc.load_model(model_path)
-    model_input = pd.DataFrame.from_dict(vars)
+    logger.info(f"Model loaded...")
+    model_input = pd.DataFrame(vars)
+    logger.info(f"Model input is {model_input}")
     model_output = loaded_model.predict(model_input)
+    logger.info(f"Model output is {model_output}")
     return model_output
 
 
@@ -17,7 +24,7 @@ def _model_path_from_env():
     model_owner = os.environ.get("MLFLOW_MODEL_OWNER", None)
     mlflow_run_id = os.environ.get("MLFLOW_RUN_ID", None)
     if model_owner and mlflow_run_id:
-        return f"/artifacts/mlflow/{model_owner}/{mlflow_run_id}/artifacts/"
+        return f"/artifacts/mlflow/{model_owner}/{mlflow_run_id}/artifacts/model"
     else:
         raise Exception(
             f"Cannot determine artifact path from owner={model_owner} and run id={mlflow_run_id}"
