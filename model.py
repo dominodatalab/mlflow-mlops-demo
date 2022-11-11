@@ -8,13 +8,13 @@ logger = logging.getLogger(name=__name__)
 # vars is a dict that the client must provide
 def predict(vars):
     model_path = _model_path_from_env()
-    logger.info(f"Model artifacts path is {model_path}")
+    print(f"Model artifacts path is {model_path}")
     loaded_model = mlflow.pyfunc.load_model(model_path)
-    logger.info(f"Model loaded...")
+    print(f"Model loaded...")
     model_input = pd.DataFrame(vars)
-    logger.info(f"Model input is {model_input}")
+    print(f"Model input is {model_input}")
     model_output = loaded_model.predict(model_input)
-    logger.info(f"Model output is {model_output}")
+    print(f"Model output is {model_output}")
     return model_output
 
 
