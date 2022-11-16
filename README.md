@@ -18,8 +18,8 @@ Only an invocation by the project owner or the use of a service token will enabl
 
 If all goes well, a Domino model API will be deployed with a model ID and model version ID. The Domino model will have environment variables set to reflect the MLFLOW_MODEL_NAME, MLFLOW_MODEL_OWNER, MLFLOW_MODEL_VERSION and MLFLOW_RUN_ID. These variables are crucial to mount the model artifacts during deployment and locate them when the model is running.
 
-The model artifacts are copied to a specific folder by a mutation and accessed from there by the model API code. The path follows a familiar domino pattern:
-`/artifacts/mlflow/{model_owner}/{mlflow_run_id}/artifacts/model`
+The model artifacts are copied to a specific folder by a mutation and accessed from there by the model API code. The path follows a familiar Domino workspace pattern:
+`/artifacts/mlflow/{model_owner}/{mlflow_run_id}/artifacts/model`.
 By providing MLFlow metadata as environment variables, the mutation and the code can construct the same path.
 
 The MLFlow model will be transitioned to Staging, with tags set to reflect the corresponding DOMINO_MODEL_ID and DOMINO_MODEL_VERSION_ID. These tags can be used to formulate the Domino model API URL and access it.
@@ -38,10 +38,12 @@ python3 -m domino_mlflow_client.service_account_utils -i <project_id> -n <projec
 
 # View the secret - substitute the actual project id for <project_id>
 kubectl get secret mlflow-model-secret -n mlflow-efs -o jsonpath="{.data.<project_id>\.apikey}" | base64 --decode
-
-# Copy the secret value output from above and create a github repository secret:
-# PROJECT_ID_<project_id>: <secret value from above>
 ``` 
+
+Copy the secret value output from above and create a github repository secret:
+| Secret Name  | Secret Value |
+| ------------- | ------------- |
+| PROJECT_ID_<project_id>  | \<secret value from above\>  |
 
 When a stage transition is requested, the mlflow proxy checks for a service token and matches the value provided in the API call with the apikey file stored as a kubernetes secret.
 
