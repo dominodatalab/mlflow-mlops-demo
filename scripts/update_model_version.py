@@ -10,7 +10,7 @@ tokens = json.loads(os.getenv("PROJECT_TOKENS"))
 with open(sys.argv[1], "r") as mv_file:
     model_versions = json.load(mv_file)
     for project_id in model_versions:
-        tracking_token = tokens[f"PROJECT_ID_{project_id}"]
+        tracking_token = tokens[f"PROJECT_ID_{project_id.upper()}"]
         if not tracking_token:
             raise Exception(f"Toekn not found for project id {project_id}")
         os.environ["MLFLOW_TRACKING_TOKEN"] = tracking_token
