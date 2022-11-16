@@ -1,12 +1,8 @@
-[
-  {
-    "name": "taxi_fare_regressor",
-    "version": 1,
-    "stage": "Staging"
-  },
-  {
-    "name": "wine_quality",
-    "version": 1,
-    "stage": "Production"
-  }
-]
+{
+  "636bdd261e7a0803c73ad405": [
+    {
+      "name": "DEMO-mlops-demo",
+      "version": 1
+    }
+  ]
+}
