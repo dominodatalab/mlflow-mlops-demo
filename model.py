@@ -15,7 +15,7 @@ def predict(vars):
     print(f"Model input is {model_input}")
     model_output = loaded_model.predict(model_input)
     print(f"Model output is {model_output}")
-    return model_output
+    return model_output.tolist()
 
 
 def _model_path_from_env():
