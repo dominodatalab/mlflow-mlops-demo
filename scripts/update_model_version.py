@@ -3,7 +3,7 @@ import mlflow
 import json
 import sys
 
-os.environ["MLFLOW_TRACKING_URI"] = "https://fsec.cs.domino.tech/mlflow-efs/"
+os.environ["MLFLOW_TRACKING_URI"] = "https://fsecdemo3105.cs.domino.tech/mlflow/"
 client = mlflow.tracking.MlflowClient()
 tokens = json.loads(os.getenv("PROJECT_TOKENS"))
 
