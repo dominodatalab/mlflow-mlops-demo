@@ -5,7 +5,9 @@ We use this project to demonstrate one possible lifecycle of MLFlow models, from
 For simplicity and demonstration purposes, the transition to staging is done from the workspace using the MLFlow version of the model. This reflects the iterative nature of the development process.
 
 ## Using MLFlow in Domino
-_It is expected that this git repository will be used to create a git based project in Domino, with the user positioned to develop in the right branch ('dev' in this case). A workspace using the Domino environment, 'MLflow-Stage-Transition--Workspace' and the JupyterLab IDE must be used for the proper setup of OS environment variables and connection to the proxy._ 
+_It is expected that this git repository will be used to create a git based project in Domino, with the user positioned to develop in the right branch ('dev' in this case)._
+
+_A workspace using the Domino environment, 'MLflow-Stage-Transition--Workspace' and the JupyterLab IDE must be used for the proper setup of OS environment variables and connection to the proxy._ 
 
 The `mlflow-model.ipynb` notebook shows how to use the MLFlow client to create experiments and runs and to register models. The environment variables required for the client to function properly, like 'MLFLOW_TRACKING_URI' are already populated within the workspace. Some familiarity with these MLFlow specific environment variables is assumed.
 
@@ -16,7 +18,7 @@ Once the model has been developed and registered with MLFlow, it can be tested b
 
 Only an invocation by the project owner or the use of a service token will enable the transition to Staging and deployment of the model API.
 
-If all goes well, a Domino model API will be deployed with a model ID and model version ID. The Domino model will have environment variables set to reflect the MLFLOW_MODEL_NAME, MLFLOW_MODEL_OWNER, MLFLOW_MODEL_VERSION and MLFLOW_RUN_ID. These variables are crucial to mount the model artifacts during deployment and locate them when the model is running.
+If all goes well, a Domino model API will be deployed with a model ID and model version ID. The Domino model will have environment variables set to reflect the MLFLOW_MODEL_NAME, MLFLOW_MODEL_OWNER, MLFLOW_MODEL_VERSION and MLFLOW_RUN_ID. These variables are used to locate the model artifacts when the model is running.
 
 The model artifacts are copied to a specific folder by a mutation and accessed from there by the model API code. The path follows a familiar Domino workspace pattern:
 `/artifacts/mlflow/{model_owner}/{mlflow_run_id}/artifacts/model`.
@@ -31,7 +33,7 @@ Within github, repository secrets are stored for each project ID. The name of th
 
 To generate and store the service account token in kubernetes, use the following snippet:
 ```
-pip install --user domino-mlflow-client==0.6.8
+pip install --user domino-mlflow-client==0.6.9
 # Generate the token and install it as a kubernetes secret. Need to be connected
 # to the right cluster.
 python3 -m domino_mlflow_client.service_account_utils -i <project_id> -n <project_name> -o <domino_project_owner>
