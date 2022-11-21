@@ -14,6 +14,8 @@ The `mlflow-model.ipynb` notebook shows how to use the MLFlow client to create e
 Once the models are created, they can be viewed by launching the Tracking UI from the workspace launcher (the MLFLOW icon under the Notebook section of the launcher)
 
 ## Testing the model
+![Model API deployment](/img/MLflow%20Domino%20API%20%20Integration.svg)
+
 Once the model has been developed and registered with MLFlow, it can be tested by deploying it as a model API in Domino. In order to do that, use the `deploy-to-staging.ipynb` notebook. You will notice that the project name is the same as the current project. The environment ID reflects a Domino environment that was created specifically to run the model (in this case, the environment named 'domino_mlflow_api_endpoint'). We would like to have created the environment using the requirements file stored as part of the model artifacts, but the model API container is locked down.
 
 Only an invocation by the project owner or the use of a service token will enable the transition to Staging and deployment of the model API.
